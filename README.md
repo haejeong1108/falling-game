@@ -18,8 +18,3 @@ cd game-frontend
 cp .env.example .env  # API 주소 확인
 npm install
 npm start
-" > README.md
-
-git add README.md
-git commit -m "docs: add README with run instructions"
-git push
