@@ -1,0 +1,24 @@
+# Node/React
+game-frontend/node_modules
+game-frontend/build
+game-frontend/.env
+
+# Python/FastAPI
+game-backend/.venv
+game-backend/venv
+game-backend/__pycache__/
+game-backend/.pytest_cache/
+game-backend/.env
+game-backend/app.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python bytecode
+**/__pycache__/
+*.py[cod]
+*.pyo
+
+# any .env anywhere
+**/.env
