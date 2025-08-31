@@ -8,10 +8,11 @@ import Signup from "./pages/Signup";
 import Game from "./pages/Game";
 import Leaderboard from "./pages/Leaderboard";
 
+// ホーム画面コンポーネント
 const Home: React.FC = () => (
   <div style={{ padding: 24 }}>
-    <h2>홈</h2>
-    <p>Falling Items 게임 프로젝트 (React + FastAPI 예정)</p>
+    <h2>ホーム</h2>
+    <p>Falling Items ゲームプロジェクト (React + FastAPI)</p>
   </div>
 );
 
@@ -21,9 +22,13 @@ const App: React.FC = () => {
       <BrowserRouter>
         <NavBar />
         <Routes>
+          {/* ホーム */}
           <Route path="/" element={<Home />} />
+          {/* ログイン */}
           <Route path="/login" element={<Login />} />
+          {/* 新規登録 */}
           <Route path="/signup" element={<Signup />} />
+          {/* ゲーム (ログイン必須) */}
           <Route
             path="/game"
             element={
@@ -32,6 +37,7 @@ const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
+          {/* ランキング */}
           <Route path="/leaderboard" element={<Leaderboard />} />
         </Routes>
       </BrowserRouter>

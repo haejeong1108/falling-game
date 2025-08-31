@@ -2,7 +2,6 @@ from datetime import datetime, timezone
 from typing import Optional
 from sqlmodel import Field, SQLModel
 
-# ===== User =====
 class User(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     email: str = Field(index=True, unique=True, max_length=255)
@@ -21,7 +20,6 @@ class UserRead(SQLModel):
     nickname: Optional[str]
     created_at: datetime
 
-# ===== Score =====  (기존 유지)
 class ScoreBase(SQLModel):
     email: str = Field(index=True, max_length=255)
     nickname: Optional[str] = Field(default=None, max_length=50)
@@ -40,7 +38,6 @@ class ScoreRead(SQLModel):
     score: int
     created_at: datetime
 
-# ===== Auth schemas =====
 class Token(SQLModel):
     access_token: str
     token_type: str = "bearer"

@@ -5,7 +5,7 @@ from passlib.context import CryptContext
 from sqlmodel import Session, select
 from models import User
 
-SECRET_KEY = "CHANGE_ME_TO_A_LONG_RANDOM_SECRET"  # .env로 빼면 더 안전
+SECRET_KEY = "CHANGE_ME_TO_A_LONG_RANDOM_SECRET"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
 

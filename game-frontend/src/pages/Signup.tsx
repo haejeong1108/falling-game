@@ -26,21 +26,21 @@ const Signup: React.FC = () => {
 
   const emailError = useMemo(() => {
     if (!submitted) return "";
-    if (!email.trim()) return "이메일을 입력하세요.";
+    if (!email.trim()) return "メールアドレスを入力してください。";
     const ok = /\S+@\S+\.\S+/.test(email);
-    return ok ? "" : "올바른 이메일 형식이 아닙니다.";
+    return ok ? "" : "正しいメールアドレス形式ではありません。";
   }, [email, submitted]);
 
   const passwordError = useMemo(() => {
     if (!submitted) return "";
-    if (!password) return "비밀번호를 입력하세요.";
-    return password.length >= 6 ? "" : "비밀번호는 최소 6자 이상이어야 합니다.";
+    if (!password) return "パスワードを入力してください。";
+    return password.length >= 6 ? "" : "パスワードは6文字以上で入力してください。";
   }, [password, submitted]);
 
   const confirmError = useMemo(() => {
     if (!submitted) return "";
-    if (!confirm) return "비밀번호 확인을 입력하세요.";
-    return confirm === password ? "" : "비밀번호가 일치하지 않습니다.";
+    if (!confirm) return "パスワード確認を入力してください。";
+    return confirm === password ? "" : "パスワードが一致しません。";
   }, [confirm, password, submitted]);
 
   const isValid =
@@ -67,10 +67,10 @@ const Signup: React.FC = () => {
 
   return (
     <div style={card}>
-      <h2>회원가입</h2>
+      <h2>新規登録</h2>
       <form onSubmit={handleSubmit} style={grid} noValidate>
         <label>
-          이메일
+          メールアドレス
           <input
             type="email"
             placeholder="you@example.com"
@@ -83,19 +83,19 @@ const Signup: React.FC = () => {
         {emailError && <span style={errorStyle}>{emailError}</span>}
 
         <label>
-          닉네임 (선택)
+          ニックネーム（任意）
           <input
-            placeholder="예: gamer_jae"
+            placeholder="例: gamer_jae"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
           />
         </label>
 
         <label>
-          비밀번호
+          パスワード
           <input
             type="password"
-            placeholder="최소 6자"
+            placeholder="6文字以上"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onBlur={() => setSubmitted(true)}
@@ -105,10 +105,10 @@ const Signup: React.FC = () => {
         {passwordError && <span style={errorStyle}>{passwordError}</span>}
 
         <label>
-          비밀번호 확인
+          パスワード確認
           <input
             type="password"
-            placeholder="다시 입력"
+            placeholder="もう一度入力"
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
             onBlur={() => setSubmitted(true)}
@@ -118,12 +118,12 @@ const Signup: React.FC = () => {
         {confirmError && <span style={errorStyle}>{confirmError}</span>}
 
         <button type="submit" disabled={!isValid || busy}>
-          {busy ? "가입 중..." : "회원가입"}
+          {busy ? "登録中..." : "新規登録"}
         </button>
       </form>
 
       <p style={{ marginTop: 12 }}>
-        이미 계정이 있나요? <Link to="/login">로그인</Link>
+        すでにアカウントをお持ちですか？ <Link to="/login">ログイン</Link>
       </p>
     </div>
   );

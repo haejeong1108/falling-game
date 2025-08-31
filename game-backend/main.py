@@ -20,11 +20,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 라우터
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(scores.router, prefix="/scores", tags=["scores"])
 
-# 테이블 생성
 @app.on_event("startup")
 def on_startup():
     SQLModel.metadata.create_all(engine)

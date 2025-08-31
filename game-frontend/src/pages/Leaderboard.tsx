@@ -52,7 +52,7 @@ const Leaderboard: React.FC = () => {
 
   return (
     <div className="px-4 py-6 max-w-3xl mx-auto">
-      <h2 className="text-2xl font-bold tracking-tight">Leaderboard</h2>
+      <h2 className="text-2xl font-bold tracking-tight">リーダーボード</h2>
 
       <div className="mt-3 flex gap-2">
         <button
@@ -62,7 +62,7 @@ const Leaderboard: React.FC = () => {
             }`}
           onClick={() => setScope("all")}
         >
-          전체
+          全体
         </button>
         <button
           className={`px-3 py-1.5 rounded-md border text-sm ${scope === "best"
@@ -71,7 +71,7 @@ const Leaderboard: React.FC = () => {
             }`}
           onClick={() => setScope("best")}
         >
-          유저별 최고점
+          ユーザー別 最高スコア
         </button>
       </div>
 
@@ -80,24 +80,24 @@ const Leaderboard: React.FC = () => {
           onClick={fetchData}
           className="inline-flex items-center rounded-md border border-gray-300 px-3 py-1.5 text-sm hover:bg-gray-50 active:scale-[0.99] transition"
         >
-          🔄 새로고침
+          🔄 更新
         </button>
-        {loading && <span className="text-sm text-gray-500">불러오는 중…</span>}
+        {loading && <span className="text-sm text-gray-500">読み込み中…</span>}
       </div>
 
       <div className="mt-6 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
         {rows.length === 0 ? (
           <div className="p-6 text-gray-600">
-            아직 점수가 없습니다. 게임에서 <span className="font-medium">Submit Score</span>를 눌러 저장해보세요.
+            まだスコアがありません。ゲームで <span className="font-medium">スコア送信</span> を押して保存してください。
           </div>
         ) : (
           <table className="w-full text-left text-sm">
             <thead className="bg-gray-50 text-gray-600">
               <tr>
-                <th className="px-4 py-3 w-16">순위</th>
-                <th className="px-4 py-3">닉네임</th>
-                <th className="px-4 py-3 w-24">점수</th>
-                <th className="px-4 py-3 w-48">저장 시각</th>
+                <th className="px-4 py-3 w-16">順位</th>
+                <th className="px-4 py-3">ニックネーム</th>
+                <th className="px-4 py-3 w-24">スコア</th>
+                <th className="px-4 py-3 w-48">保存日時</th>
               </tr>
             </thead>
             <tbody>
@@ -111,7 +111,7 @@ const Leaderboard: React.FC = () => {
                     className={[
                       "border-t",
                       isMe
-                        ? "bg-blue-50 dark:bg-blue-900/30" // 내 계정이면 파란 강조
+                        ? "bg-blue-50 dark:bg-blue-900/30" // 自分のアカウントなら青で強調
                         : isTop3
                           ? "bg-amber-50/60"
                           : "bg-white",

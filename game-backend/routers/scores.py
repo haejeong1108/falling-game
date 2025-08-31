@@ -1,12 +1,11 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select, func, SQLModel
-from models import Score, ScoreRead, User  # User 타입은 인증 의존성 리턴용
-from routers.auth import get_current_user, get_session  # ★ 인증/세션 의존성
+from models import Score, ScoreRead, User
+from routers.auth import get_current_user, get_session
 
 router = APIRouter()
 
-# ★ JSON 바디로 score만 받기 위한 모델
 class ScoreBody(SQLModel):
     score: int
 
@@ -14,7 +13,7 @@ class ScoreBody(SQLModel):
 def create_score(
     body: ScoreBody,
     session: Session = Depends(get_session),
-    user: User = Depends(get_current_user)  # ★ 토큰 필수
+    user: User = Depends(get_current_user)
 ):
     if body.score < 0:
         raise HTTPException(status_code=400, detail="score must be >= 0")
@@ -27,11 +26,10 @@ def create_score(
 @router.get("/top", response_model=List[ScoreRead])
 def get_top_scores(
     limit: int = 20,
-    scope: str = "all",   # "all" | "best"
+    scope: str = "all",
     session: Session = Depends(get_session)
 ):
     if scope == "best":
-        # 이메일별 최고점만 추출 (동점이면 최근 기록 우선)
         sub = select(
             Score.email,
             func.max(Score.score).label("best_score"),
@@ -46,7 +44,6 @@ def get_top_scores(
         ).all()
         return rows
 
-    # 전체 기록 중 상위
     rows = session.exec(
         select(Score).order_by(Score.score.desc(), Score.created_at.desc()).limit(limit)
     ).all()

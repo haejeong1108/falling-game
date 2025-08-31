@@ -1,4 +1,3 @@
-// 간단한 전역 이벤트 유틸
 export const SCORES_UPDATED = "scores:updated";
 
 export function emitScoresUpdated() {
